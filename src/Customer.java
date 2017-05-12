@@ -7,12 +7,12 @@ class Customer {
     private String name;
     private Vector<Rental> rentals = new Vector<>();
     
-    public Customer (String newname){
-        name = newname;
+    public Customer (String newName){
+        name = newName;
     };
     
-    public void addRental(Rental arg) {
-        rentals.addElement(arg);
+    public void addRental(Rental rental) {
+        rentals.addElement(rental);
     };
     
     public String getName (){
@@ -46,21 +46,21 @@ class Customer {
         return result;
     }
 
-    private double amountFor(Rental each) {
+    private double amountFor(Rental aRental) {
         double thisAmount = 0;
-        switch (each.getMovie().getPriceCode()) {
+        switch (aRental.getMovie().getPriceCode()) {
             case Movie.REGULAR:
                 thisAmount += 2;
-                if (each.getDaysRented() > 2)
-                    thisAmount += (each.getDaysRented() - 2) * 1.5;
+                if (aRental.getDaysRented() > 2)
+                    thisAmount += (aRental.getDaysRented() - 2) * 1.5;
                 break;
             case Movie.NEW_RELEASE:
-                thisAmount += each.getDaysRented() * 3;
+                thisAmount += aRental.getDaysRented() * 3;
                 break;
             case Movie.CHILDRENS:
                 thisAmount += 1.5;
-                if (each.getDaysRented() > 3)
-                    thisAmount += (each.getDaysRented() - 3) * 1.5;
+                if (aRental.getDaysRented() > 3)
+                    thisAmount += (aRental.getDaysRented() - 3) * 1.5;
                 break;
         }
         return thisAmount;
